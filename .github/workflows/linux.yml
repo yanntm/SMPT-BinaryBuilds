@@ -1,0 +1,26 @@
+name: Linux Build
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository and submodules
+      uses: actions/checkout@v3
+    - name: libGLPK
+      run: sudo apt-get install libglpk-dev ;
+    - name: 4ti2
+      run: wget https://github.com/4ti2/4ti2/releases/download/Release_1_6_9/4ti2-1.6.9.tar.gz ; tar xvzf 4ti2-1.6.9.tar.gz ; cd 4ti2-1.6.9/ ; echo "4ti2int64_LDFLAGS=$(LDFLAGS) -all-static -static-libgcc -static-libstdc++" >> src/groebner/Makefile.am ;  ./configure ; make -j ; cd ..
+    - name: wrap
+      run: cp 4ti2-1.6.9/src/groebner/4ti2int64 ./qsolve ; strip -s qsolve ; mkdir -p website ; mv qsolve website/
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      with:
+          branch: linux # The branch the action should deploy to.
+          folder: website/ # The folder the action should deploy.
+          clean: true # Automatically remove deleted files from the deploy branch 
+          single-commit: true
