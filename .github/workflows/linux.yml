@@ -12,9 +12,11 @@ jobs:
     - name: Checkout repository and submodules
       uses: actions/checkout@v3
     - name: libGLPK
-      run: sudo apt-get install libglpk-dev ;
+      run: sudo apt-get install python3 unzip python3-psutil zlib1g-dev python3-pip
     - name: 4ti2
       run: ./build4ti2.sh
+    - name: SMPT
+      run: ./buildSMPT.sh
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:

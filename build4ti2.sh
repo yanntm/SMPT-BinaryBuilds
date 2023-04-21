@@ -21,9 +21,11 @@ make -j
 rm src/groebner/4ti2int64
 make
 
-mkdir -p ../website
-cp src/groebner/4ti2int64 ../website/qsolve
-strip -s ../website/qsolve
+mkdir -p ../../website
+cp src/groebner/4ti2int64 ../../website/qsolve
+strip -s ../../website/qsolve
+
+cd ../../
 
 echo "Done"
 echo ""
