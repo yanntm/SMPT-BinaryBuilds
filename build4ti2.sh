@@ -14,7 +14,7 @@ make -j
 
 echo "Extracting 4ti2"
 cd 4ti2-1.6.9
-echo "4ti2int64_LDFLAGS=-all-static -static-libgcc -static-libstdc++ $(LDFLAGS) " >> src/groebner/Makefile.am ;  
+echo "4ti2int64_LDFLAGS=-all-static -static-libgcc -static-libstdc++ \$(LDFLAGS)" >> src/groebner/Makefile.am ;  
 autoreconf -vfi ;
 ./configure LDFLAGS=-L/$PWD/../dest/lib/ --without-zsolve --with-gmp=no ; 
 make -j
