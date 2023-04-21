@@ -27,7 +27,7 @@ tar xvzf 4ti2-1.6.9.tar.gz
 cd 4ti2-1.6.9/
 autoreconf -vfi
 echo "4ti2int64_LDFLAGS=-all-static -static-libgcc -static-libstdc++ \$(LDFLAGS)" >> src/groebner/Makefile.am ;  
-./configure CFLAGS="-I$PWD/../usr/local/include" LDFLAGS="-L$PWD/../usr/local/lib" --prefix=$PWD/../usr/local/
+./configure CFLAGS="-I$PWD/../usr/local/include" CXXFLAGS="-I$PWD/../usr/local/include" LDFLAGS="-L$PWD/../usr/local/lib" --prefix=$PWD/../usr/local/
 make -j
 rm src/groebner/4ti2int64
 make
