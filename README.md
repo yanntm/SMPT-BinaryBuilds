@@ -1,2 +1,7 @@
 # SMPT-BinaryBuilds
-A repository hosting CI to rebuild SMPT binaries from source
+
+A repository hosting GitHub Actions CI to rebuild SMPT binaries and dependencies from source.
+
+
+
+
