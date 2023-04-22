@@ -32,7 +32,7 @@ tar xzf 4ti2-1.6.9.tar.gz
 cd 4ti2-1.6.9/
 autoreconf -vfi
 echo "4ti2int64_LDFLAGS=-all-static -static-libgcc -static-libstdc++ \$(LDFLAGS)" >> src/groebner/Makefile.am ;  
-./configure CFLAGS="-I$IDIR/include" CXXFLAGS="-I$IDIR/include" LDFLAGS="-L$IDIR/lib" --prefix=$IDIR
+./configure CFLAGS="-I$IDIR/include" CXXFLAGS="-I$IDIR/include" LDFLAGS="-I$IDIR/include -L$IDIR/lib" --prefix=$IDIR
 make -j
 rm src/groebner/4ti2int64
 make
