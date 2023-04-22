@@ -2,32 +2,37 @@
 
 set -x
 
+mkdir -p usr/
+mkdir -p usr/local/
+export IDIR=$PWD/usr/local/
 
 echo "building libGMP"
 wget --progress=dot:mega https://gmplib.org/download/gmp/gmp-6.2.1.tar.bz2 ; 
 tar xjf gmp-6.2.1.tar.bz2 ; 
 cd gmp-6.2.1 ; 
-./configure --enable-cxx --enable-fat --prefix=$(pwd)/../usr/local  --build=westmere-pc-linux-gnu --disable-shared
+./configure --enable-cxx --enable-fat --prefix=$IDIR  --build=westmere-pc-linux-gnu --disable-shared
 make -j 
 make install 
 cd ..     
 
 echo "building glpk"
 wget --progress=dot:mega http://ftp.gnu.org/gnu/glpk/glpk-5.0.tar.gz
-tar xvzf glpk-5.0.tar.gz 
+tar xzf glpk-5.0.tar.gz 
 cd glpk-5.0/
-./configure CFLAGS="-I$PWD/../usr/local/include" LDFLAGS="-L$PWD/../usr/local/lib" --prefix=$PWD/../usr/local/
+./configure CFLAGS="-I$IDIR/include" LDFLAGS="-L$IDIR/lib" --prefix=$IDIR
 make -j
 make install
 cd ..
 
+ls -r $IDIR
+
 echo "Building 4ti2"
 wget --progress=dot:mega https://github.com/4ti2/4ti2/releases/download/Release_1_6_9/4ti2-1.6.9.tar.gz
-tar xvzf 4ti2-1.6.9.tar.gz
+tar xzf 4ti2-1.6.9.tar.gz
 cd 4ti2-1.6.9/
 autoreconf -vfi
 echo "4ti2int64_LDFLAGS=-all-static -static-libgcc -static-libstdc++ \$(LDFLAGS)" >> src/groebner/Makefile.am ;  
-./configure CFLAGS="-I$PWD/../usr/local/include" CXXFLAGS="-I$PWD/../usr/local/include" LDFLAGS="-L$PWD/../usr/local/lib" --prefix=$PWD/../usr/local/
+./configure CFLAGS="-I$IDIR/include" CXXFLAGS="-I$IDIR/include" LDFLAGS="-L$IDIR/lib" --prefix=$IDIR
 make -j
 rm src/groebner/4ti2int64
 make
@@ -36,6 +41,7 @@ cp src/groebner/4ti2int64 ../website/qsolve
 strip -s ../website/qsolve
 cd ..
 
+if [ ! -f website/qsolve ] ; then cat 4ti2-1.6.9/config.log ; fi
 
 echo "Done"
 echo ""
