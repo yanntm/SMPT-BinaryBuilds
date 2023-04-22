@@ -24,7 +24,7 @@ make -j
 make install
 cd ..
 
-ls -r $IDIR
+ls -laR $IDIR
 
 echo "Building 4ti2"
 wget --progress=dot:mega https://github.com/4ti2/4ti2/releases/download/Release_1_6_9/4ti2-1.6.9.tar.gz
