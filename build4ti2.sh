@@ -16,9 +16,9 @@ make install
 cd ..     
 
 echo "building glpk"
-wget --progress=dot:mega http://ftp.gnu.org/gnu/glpk/glpk-5.0.tar.gz
-tar xzf glpk-5.0.tar.gz 
-cd glpk-5.0/
+wget --progress=dot:mega http://ftp.gnu.org/gnu/glpk/glpk-4.65.tar.gz
+tar xzf glpk-4.65.tar.gz 
+cd glpk-4.65/
 ./configure CFLAGS="-I$IDIR/include" LDFLAGS="-L$IDIR/lib" --prefix=$IDIR
 make -j
 make install
