@@ -35,15 +35,19 @@ autoreconf -vfi
 
 # for i in $(find -name Makefile.am -print) ; do sed -i 's/AM_CXXFLAGS =/AM_CXXFLAGS = $(CXXFLAGS)/g' $i ; done
 
-echo "4ti2int64_LDFLAGS=-all-static -static-libgcc -static-libstdc++ \$(LDFLAGS)" >> src/groebner/Makefile.am ;  
+echo "4ti2int64_LDFLAGS=-all-static -static-libgcc -static-libstdc++ \$(LDFLAGS)" >> src/groebner/Makefile.am ;
+echo "zsolve_LDFLAGS=-all-static -static-libgcc -static-libstdc++ \$(LDFLAGS)" >> src/zsolve/Makefile.am ;
 ./configure 
 # CFLAGS="-I$IDIR/include" CXXFLAGS="-I$IDIR/include" LDFLAGS="-I$IDIR/include -L$IDIR/lib" --prefix=$IDIR
 make -j
 rm src/groebner/4ti2int64
+rm src/zsolve/zsolve
 make
 mkdir -p ../website
 cp src/groebner/4ti2int64 ../website/qsolve
+cp src/zsolve/zsolve ../website/
 strip -s ../website/qsolve
+strip -s ../website/zsolve
 cd ..
 
 if [ ! -f website/qsolve ] ; then cat 4ti2-1.6.9/config.log ; fi
