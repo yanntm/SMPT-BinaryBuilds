@@ -44,9 +44,11 @@ rm src/groebner/4ti2int64
 rm src/zsolve/zsolve
 make
 mkdir -p ../website
-cp src/groebner/4ti2int64 ../website/qsolve
+cp src/groebner/4ti2int64 ../website/
+cp src/groebner/qsolve ../website/
+cp src/groebner/zbasis ../website/
 cp src/zsolve/zsolve ../website/
-strip -s ../website/qsolve
+strip -s ../website/4ti2int64
 strip -s ../website/zsolve
 cd ..
 
