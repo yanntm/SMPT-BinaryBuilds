@@ -48,6 +48,7 @@ cp src/groebner/4ti2int64 ../website/
 cp src/groebner/qsolve ../website/
 cp src/groebner/zbasis ../website/
 cp src/zsolve/zsolve ../website/
+cp src/zsolve/hilbert ../website/
 strip -s ../website/4ti2int64
 strip -s ../website/zsolve
 cd ..
