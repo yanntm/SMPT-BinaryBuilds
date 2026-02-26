@@ -17,6 +17,6 @@ This repository is provided in the hope it may prove useful with GPL v3 license.
 
 Originally built in April 2023 by Yann Thierry-Mieg, LIP6, CNRS & Sorbonne Université.
 
-Last built June 2024.
+Last built Feb 2026.
 
 
