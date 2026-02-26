@@ -28,9 +28,9 @@ cd ..
 ls -laR $IDIR
 
 echo "Building 4ti2"
-wget --progress=dot:mega https://github.com/4ti2/4ti2/releases/download/Release_1_6_9/4ti2-1.6.9.tar.gz
-tar xzf 4ti2-1.6.9.tar.gz
-cd 4ti2-1.6.9/
+wget --progress=dot:mega https://github.com/4ti2/4ti2/releases/download/Release_1_6_14/4ti2-1.6.14.tar.gz
+tar xzf 4ti2-1.6.14.tar.gz
+cd 4ti2-1.6.14/
 autoreconf -vfi
 
 # for i in $(find -name Makefile.am -print) ; do sed -i 's/AM_CXXFLAGS =/AM_CXXFLAGS = $(CXXFLAGS)/g' $i ; done
@@ -53,8 +53,7 @@ strip -s ../website/4ti2int64
 strip -s ../website/zsolve
 cd ..
 
-if [ ! -f website/qsolve ] ; then cat 4ti2-1.6.9/config.log ; fi
+if [ ! -f website/qsolve ] ; then cat 4ti2-1.6.14/config.log ; fi
 
 echo "Done"
 echo ""
-
