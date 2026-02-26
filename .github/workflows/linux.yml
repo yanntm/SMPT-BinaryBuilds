@@ -4,21 +4,27 @@ on:
   push:
     branches: [ master ]
 
+permissions:
+  contents: write
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout repository and submodules
-      uses: actions/checkout@v3
+      uses: actions/checkout@v6
     - name: packages
       run: sudo apt-get install python3 unzip python3-psutil zlib1g-dev python3-pip ; sudo apt-get remove libgmp-dev 
     - name: 4ti2
       run: ./build4ti2.sh
     - name: SMPT
       run: ./buildSMPT.sh
+    - name: check files
+      run: pwd ; ls -Rlah
     - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
           branch: linux # The branch the action should deploy to.
           folder: website/ # The folder the action should deploy.
