@@ -4,11 +4,14 @@ set -x
 mkdir -p usr/local/
 export IDIR=$PWD/usr/local/
 
+# required for these old tools.
+export CC="gcc -std=gnu17"
+
 echo "building libGMP"
 wget --progress=dot:mega https://gmplib.org/download/gmp/gmp-6.2.1.tar.bz2
 tar xjf gmp-6.2.1.tar.bz2
 cd gmp-6.2.1
-./configure --enable-cxx --enable-fat --disable-shared --prefix="$IDIR" CC="gcc -std=gnu17"
+./configure --enable-cxx --enable-fat --disable-shared --prefix="$IDIR" 
 # --build=westmere-pc-linux-gnu : required in MCC, but obsolete.
 make -j
 make install          # no sudo needed any more
@@ -34,8 +37,7 @@ autoreconf -vfi
 
 echo "4ti2int64_LDFLAGS=-all-static -static-libgcc -static-libstdc++ \$(LDFLAGS)" >> src/groebner/Makefile.am ;
 echo "zsolve_LDFLAGS=-all-static -static-libgcc -static-libstdc++ \$(LDFLAGS)" >> src/zsolve/Makefile.am ;
-./configure 
-# CFLAGS="-I$IDIR/include" CXXFLAGS="-I$IDIR/include" LDFLAGS="-I$IDIR/include -L$IDIR/lib" --prefix=$IDIR
+./configure CFLAGS="-I$IDIR/include" CXXFLAGS="-I$IDIR/include" LDFLAGS="-I$IDIR/include -L$IDIR/lib" --prefix=$IDIR
 make -j
 rm src/groebner/4ti2int64
 rm src/zsolve/zsolve
