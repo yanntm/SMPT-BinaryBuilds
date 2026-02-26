@@ -7,9 +7,9 @@ mkdir -p usr/local/
 export IDIR=$PWD/usr/local/
 
 echo "building libGMP"
-wget --progress=dot:mega https://gmplib.org/download/gmp/gmp-6.2.1.tar.bz2 ; 
-tar xjf gmp-6.2.1.tar.bz2 ; 
-cd gmp-6.2.1 ; 
+wget --progress=dot:mega https://gmplib.org/download/gmp/gmp-6.3.0.tar.bz2 ; 
+tar xjf gmp-6.3.0.tar.bz2 ; 
+cd gmp-6.3.0 ; 
 # --prefix=$IDIR
 ./configure --enable-cxx --enable-fat --build=westmere-pc-linux-gnu --disable-shared
 make -j 
