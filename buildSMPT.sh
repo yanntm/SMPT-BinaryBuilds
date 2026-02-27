@@ -7,6 +7,8 @@ git clone https://github.com/nicolasAmat/SMPT.git
 
 cd SMPT
 
+\cp ../setup.py .
+
 python3 setup.py build
 
 cd build/*/
